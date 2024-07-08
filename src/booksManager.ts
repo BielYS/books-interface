@@ -13,7 +13,7 @@ const fetchBooks = async () => {
 fetchBooks();
 
 
-const addBook = async (book: any) => {
+const getBook = async (book: any) => {
     try {
       const response = await axios.post('https://4tqplmanybdulhmjq22ctlktum.appsync-api.us-east-2.amazonaws.com/graphql', {
         query: `
