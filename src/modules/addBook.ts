@@ -8,9 +8,6 @@ const addBook = async (isbn13: string, author: string, isbn10: string, published
             mutation addBook($isbn13: String!, $author: String!, $isbn10: String!, $published: String!, $title: String!) {
                 addBook(isbn13: $isbn13, author: $author, isbn10: $isbn10, published: $published, title: $title) {
                     isbn13
-                    author
-                    isbn10
-                    published
                     title
                 }
             }
@@ -32,7 +29,14 @@ const addBook = async (isbn13: string, author: string, isbn10: string, published
             },
         });
 
-        return response.data.data.addBook;
+        console.log("API Response:", response.data);
+
+        if (response.data && response.data.data && response.data.data.addBook) {
+            return response.data.data.addBook;
+        } else {
+            console.error("addBook property is missing in the API response");
+            throw new Error("addBook property is missing in the API response");
+        }
     } catch (error) {
         console.error("Error adding book:", error);
         throw new Error("Failed to add book");

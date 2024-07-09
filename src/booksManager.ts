@@ -1,6 +1,7 @@
 import { getBooksData } from './modules/getBooksData';
 import axios from "axios";
 import addBook from './modules/addBook';
+import deleteBook from './modules/deleteBook';
 
 const fetchBooks = async () => {
     try {
@@ -54,3 +55,14 @@ const addNewBook = async () => {
 };
 
 addNewBook();
+
+const removeBook = async (isbn13: string) => {
+  try {
+      const removedBook = await deleteBook(isbn13);
+      console.log("Book deleted successfully:", removedBook);
+  } catch (error) {
+      console.error("Error deleting book:", error);
+  }
+};
+
+removeBook("978-3-16-148410-0");
