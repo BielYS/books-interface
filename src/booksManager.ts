@@ -1,5 +1,6 @@
 import { getBooksData } from './modules/getBooksData';
 import axios from "axios";
+import addBook from './modules/addBook';
 
 const fetchBooks = async () => {
     try {
@@ -42,3 +43,14 @@ const getBook = async (book: any) => {
       console.error('Ocorreu um erro ao adicionar o livro:', error);
     }
   };
+
+const addNewBook = async () => {
+  try {
+      const newBook = await addBook("978-3-16-148410-0", "Author Name", "1234567890", "2024-01-01", "New Book Title");
+      console.log("New book added successfully:", newBook);
+  } catch (error) {
+      console.error("Error adding new book:", error);
+  }
+};
+
+addNewBook();
